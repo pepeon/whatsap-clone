@@ -1,0 +1,13 @@
+{
+    "name": "My App",
+    "short_name": "App",
+    "start_url": "/",
+    "display": "standalone",
+    "icons": [
+      {
+        "src": "/images/whatsapp.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ]
+  }
