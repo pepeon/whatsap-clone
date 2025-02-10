@@ -1,5 +1,5 @@
 import './style.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import MessageList from '../MessageList'
 
 function Chat ({chats, setIsChats,setIsAuth}) {
@@ -18,12 +18,17 @@ function Chat ({chats, setIsChats,setIsAuth}) {
     const [avatar, setAvatar] = useState('')
     const {idInstance, apiTokenInstance} = JSON.parse(localStorage.getItem('keys'))
 
-    let currentId = 0
+
     useEffect(() => {
-        setInterval(()=> getNotification(), 5000)
         
     }, [])
-    
+ 
+    useEffect(() => {
+
+
+        const interval = setInterval(()=> getNotification(), 5000)
+        return () => clearInterval(interval); 
+    }, [isChatId])
 
     useEffect(() => {
 
@@ -45,21 +50,10 @@ function Chat ({chats, setIsChats,setIsAuth}) {
     
         const newChatId = data.body.senderData.chatId;
         const timestamp = data.body.timestamp;
-    
-        const messageObject = {
-            type,
-            chatId: newChatId,
-            textMessage: newMessage,
-            timestamp
-        };
 
         const newChat = await getContactInfo(newChatId.replace(/\D/g, ""));
 
         
-        if (currentId === newChatId) 
-            setMessages(prev => [...prev, messageObject]);
- 
-
         setIsChats((prev) => {
             if (prev.some(chat => chat.chatId === newChatId)) {
     
@@ -80,6 +74,16 @@ function Chat ({chats, setIsChats,setIsAuth}) {
     
             return [userObject, ...prev];
         });
+
+        const messageObject = {
+            type,
+            chatId: newChatId,
+            textMessage: newMessage,
+            timestamp
+        };
+
+        if (isChatId === newChatId)
+            setMessages((prev) => [...prev, messageObject])
     };
     
 
@@ -90,28 +94,30 @@ function Chat ({chats, setIsChats,setIsAuth}) {
                         if (data !== null) {
 
                             
-                            
                             try {
                                 if (data.body.typeWebhook === "incomingMessageReceived") {
                                     const type = "incoming" 
                                     
                                     
                                     
-                                    await updateChats(data, type)
-                                    
+                                   await updateChats(data, type)
+                                   
+                                  
                                     
                                 }
                                 if (data.body.typeWebhook === "outgoingMessageReceived") {
                                     const type = "outgoing"
                                     await updateChats(data, type)
-    
+
                                 }
 
 
-                            }catch {
-                                await deleteNotification(data.receiptId)
-                            }finally {
+                            } catch (e) {
+                                console.log(e)
+                            } finally {
+
                                 sortChats()
+                                
                                 await deleteNotification(data.receiptId)
                             }
      
@@ -149,12 +155,12 @@ function Chat ({chats, setIsChats,setIsAuth}) {
     }
 
     const showChat = async (chat, isFirstUpdate = true) => {    
-        
+        setIsChatId(chat.chatId)
+
         if (isFirstUpdate) {
             setChatName(chat.data?.contactName || chat.chatId?.replace(/\D/g, ""))
-            setIsChatId(chat.chatId)
+            
             setAvatar(() => chat.data?.avatar || './images/circle.jpg')
-            currentId = chat.chatId
         }
         const response = await getChatHistory(chat)
 
