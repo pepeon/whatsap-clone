@@ -1,0 +1,331 @@
+
+.chat__item {
+    display: flex;
+    padding: 12px;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #202c33;
+    color: rgb(233, 237, 239);
+    transition: background .1s ease-in-out;
+}
+
+.chat__item:hover {
+    background-color: #202c33;
+}
+
+.chat__img {
+    display: block;
+    border-radius: 50%;
+}
+
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    height: 70px;
+    border-bottom: 1px solid #202c33;
+}
+
+.chat__contact-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #202c33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat__contact-form form {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+}
+
+.chat__contact-form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 12px 20px;
+    background: #2a3942;
+    border: 1px solid #374248;
+    border-radius: 8px;
+    color: #e9edef;
+    font-size: 15px;
+    transition: all 0.2s;
+}
+
+.chat__contact-form input:focus {
+    outline: none;
+    border-color: #00a884;
+    box-shadow: 0 0 0 2px rgba(0, 168, 132, 0.2);
+}
+
+.chat__contact-form button {
+    background: #00a884;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.chat__contact-form button:hover {
+    background: #008f74;
+}
+
+.chat__input {
+    flex: 1;
+    max-width: 100%;
+    height: 40px;
+    margin: 0;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+.chat__input::placeholder {
+    color: rgb(134, 150, 160);
+}
+
+.chat__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.chat__sendingMessage {
+    width: 60px;
+    height: 40px;
+    background-color: #00a884;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.chat__sendingMessage:hover {
+    background-color: #008f74;
+}
+
+.chat__sendingMessage::after {
+    content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M2.01 21L23 12 2.01 3 2 10l15 2-15 2z'/%3E%3C/svg%3E");
+}
+.chat {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+.chat__sidebar {
+    width: 30%;
+    height: 100%;
+    background-color: #111b21;
+    position: relative;
+    border-right: 1px solid #202c33;
+    transition: all .2s ease-in-out;
+}
+.chat__buttonAdd:hover .newUserButton path {
+    fill: white; 
+  }
+
+.chat__main {
+    width: 70%;
+    box-sizing: border-box;
+    height: 100%;
+    background-color: #efeae2;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.chat__img {
+    display: block;
+    border-radius: 50%;
+}
+
+
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    height: 70px;
+    gap: 20px;
+}
+.chat__header h1 {
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    color: rgb(233, 237, 239);
+    flex: 1;
+}
+.chat__header button {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+.chat__buttonAdd {
+    color: rgb(233, 237, 239);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+}
+.chat__buttonAdd:hover {
+
+}
+.chat__container {
+    height: calc(100% - 75px);
+}
+.chat__list {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.chat__contact-form {
+    box-sizing: border-box;
+    position: absolute;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;    
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+
+}
+.chat__contact-form form {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.chat__contact-form span {
+    color: rgb(233, 237, 239);
+}
+.chat__contact-form button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.chat__contact-form button:hover {
+    background-color: #00a884;
+}
+.chat__header svg {
+    cursor: pointer;
+}
+.chat__input {
+    flex: 1;
+    max-width: 100%;
+    height: 43px;
+    margin: 0;
+    padding: 0 20px;
+    background-color: rgb(42, 57, 66);
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    font-size: 15px;
+    color: rgb(233, 237, 239);
+    border: none;
+}
+.chat__close {
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+.chat__input-container {
+    padding: 10px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #202c33;
+    font-size: 15px;
+    outline: none;
+}
+.chat__sendingMessage {
+    width: 60px;
+    background-color: transparent;
+    border: none;
+
+}
+
+.selected-chat__header {
+    background-color: #202c33;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    color: #e9edef;
+    padding: 0 15px;
+    min-height: 70px;
+    
+}
+.selected-chat__header h2 {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+}
+
+.chat__avatar {
+    display: block;
+    margin: 0;
+    padding: 0;
+    
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+
+}
+.chat__name {
+    font-size: 17px;
+}
+.chat__message {
+    font-size: 14px;
+    color: rgb(134, 150, 160);
+}
+.chat__messages {
+    background-color: rgb(12 21 27);
+    color: rgb(134, 150, 160);
+    padding-bottom: 20px;
+    font-size: 15px;
+}
+
+.backsplah {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(34, 46, 53);
+    height: 100%;
+    flex-direction: column;
+    font-size: 18px;
+    gap: 20px;
+    color: rgb(134, 150, 160);
+}
+
+.header__form {
+   
+}
